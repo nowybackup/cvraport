@@ -1,0 +1,5 @@
+#<ncurses.h>
+
+int mainc(){
+	
+}
