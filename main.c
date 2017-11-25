@@ -57,7 +57,7 @@ int main()
 
         /* Wydrukowanie tytulu okna gdzie znajduje sie menu */
         box(my_menu_win, 0, 0);
-        print_in_middle(my_menu_win, 1, 0, 40, "Moje menu", C:OLOR_PAIR(1));
+        print_in_middle(my_menu_win, 1, 0, 40, "Moje menu", COLOR_PAIR(1));
         mvwaddch(my_menu_win, 2, 0, ACS_LTEE);
         mvwhline(my_menu_win, 2, 1, ACS_HLINE, 38);
         mvwaddch(my_menu_win, 2, 39, ACS_RTEE);
