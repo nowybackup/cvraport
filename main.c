@@ -1,9 +1,13 @@
-#include "cvraport.h"
-
 #include <curses.h>
 #include <menu.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include "include/initialize/colors.c"
+
+#include "cvraport.h"
+#include "include/style/color_style.h"
+#include "include/style/panel_style.h"
 
 char *choices[] = {
                         "Analiza EXIF",
@@ -23,12 +27,12 @@ int main()
         
         /* Inicializacja cuses */
         initscr();
-        start_color();
         cbreak();
         noecho();
         keypad(stdscr, TRUE);
-        init_pair(1, COLOR_RED, COLOR_BLACK);
-        init_pair(2, COLOR_CYAN, COLOR_BLACK);
+
+        /* Inicializacja wszystkich kolorow */
+        initialize_colors();
 
         /* Utworzenie przedmiotow */
         n_choices = ARRAY_SIZE(choices);
@@ -56,24 +60,24 @@ int main()
 
         /* Wydrukowanie tytulu okna gdzie znajduje sie menu */
         box(my_menu_win, 0, 0);
-        print_in_middle(my_menu_win, 1, 0, 40, "Moje menu", COLOR_PAIR(1));
+        print_in_middle(my_menu_win, 1, 0, 40, "Moje menu", MOCNY_CZERWONY);
         mvwaddch(my_menu_win, 2, 0, ACS_LTEE);
         mvwhline(my_menu_win, 2, 1, ACS_HLINE, 38);
         mvwaddch(my_menu_win, 2, 39, ACS_RTEE);
 
         /* Ustawienie tła dla dla opcjiru oraz koloru listy*/
-        set_menu_fore(my_menu, COLOR_PAIR(1) | A_REVERSE);
-        set_menu_back(my_menu, COLOR_PAIR(2));
-        set_menu_grey(my_menu, COLOR_PAIR(3));
+        set_menu_fore(my_menu, MOCNY_CZERWONY | A_REVERSE);
+        set_menu_back(my_menu, JASNY_NIEBIESKI);
+        set_menu_grey(my_menu, MOCNY_ZIELONY);
         
         /* Wykonanie menu */
         post_menu(my_menu);
         wrefresh(my_menu_win);
         
-        attron(COLOR_PAIR(2));
+        attron(MOCNY_NIEBIESKI);
         mvprintw(LINES - 2, 0, "Uzyj strzalek oraz klawisza ENTER, apy poruszac sie po programie");
         mvprintw(LINES - 1, 0, "Wybranie obcji exit z menu oraz wcisniecie klawisza F1 powoduje wyjscie z programu");
-        attroff(COLOR_PAIR(2));
+        attroff(MOCNY_NIEBIESKI);
         refresh();
 
         while((c = wgetch(my_menu_win)) != KEY_F(1))
