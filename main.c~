@@ -1,0 +1,27 @@
+#include <ncurses.h> // ncurses.h zawiera stdio.h
+#include <string.h>
+ 
+int main()
+{
+    char mesg[]="Tylko string";   // wiadomosc do wyswietlenia
+    int row,col;                  // do przechowywania ilości
+                                  // kolumn i rzedow ekranu
+ 
+    initscr();                    // rozpoczynamy tryb curses
+ 
+    getmaxyx(stdscr,row,col);     // pobieranie ilości kolumn
+                                  // i rzędów
+ 
+    mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);
+                                  // wydruk wiadomości na
+                                  // środku ekranu
+ 
+    mvprintw(row-2,0,"Twoj ekran ma %d rzedow i %d kolumn\n",row,col);
+ 
+    printw("Zmien rozmiar okna(jezeli mozliwe) i uruchom program ponownie");
+ 
+    refresh();
+    getch();
+    endwin();
+    return 0;
+}
