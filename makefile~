@@ -1,0 +1,3 @@
+all:
+	gcc -c main.c cvraport.h -o main -l ncu
+rses -l menu
