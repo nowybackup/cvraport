@@ -2,6 +2,7 @@
 #include <menu.h>
 #include <string.h>
 #include <stdlib.h>
+#include <panel.h>
 
 #include "include/initialize/colors.c"
 
@@ -9,24 +10,43 @@
 #include "include/style/color_style.h"
 #include "include/style/panel_style.h"
 
-char *choices[] = {
+char *choices_menu[] = {
                         "Analiza EXIF",
                         "Analiza graficzna",
                         "Analiza zgromadzonych danych",
                         "Exit",
                         (char *)NULL,
                   };
+
+char *choices_exif[] = {
+                        "wybor1",
+                        "wybor2",
+                        "wybor3",
+                        "Exit",
+                        (char *)NULL,
+                  };
+
+
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
 
 int main()
-{       ITEM **my_items;
-        int c;                          
-        MENU *my_menu;
-        WINDOW *my_menu_win;
-        int n_choices, i;
+{       
+	ITEM **my_items;
+	
+         int c;                          
+         MENU *my_menu;
+         WINDOW *my_menu_win;
+         int n_choices_menu = 0;
+	int n_choices_exif = 0;
         
-        /* Inicializacja cuses */
-        initscr();
+        /* Inicializacja curses */
+
+         if(!initscr()) {
+	fprintf(stderr, "Nie udalo uruchomic ncurses\n");
+	return -1;
+	}
+
+        start_color();
         cbreak();
         noecho();
         keypad(stdscr, TRUE);
@@ -34,11 +54,20 @@ int main()
         /* Inicializacja wszystkich kolorow */
         initialize_colors();
 
-        /* Utworzenie przedmiotow */
-        n_choices = ARRAY_SIZE(choices);
-        my_items = (ITEM **)calloc(n_choices, sizeof(ITEM *));
-        for(i = 0; i < n_choices; ++i)
-                my_items[i] = new_item(choices[i], choices[i]);
+        /* Utworzenie elementow menu */
+         n_choices_menu = ARRAY_SIZE(choices_menu);
+	n_choices_exif = ARRAY_SIZE(choices_menu);
+         my_items = (ITEM **)calloc(n_choices_menu, sizeof(ITEM *));
+	my_items = (ITEM **)calloc(n_choices_exif, sizeof(ITEM *));
+        for(int i = 0; i < n_choices_menu; ++i){
+                  my_items[i] = new_item(choices_menu[i], choices_menu[i]);
+
+		if(i==1){
+			for(int j = 0; j < n_choices_exif; ++j){
+			my_items[j] = new_item(choices_exif[j], choices_exif[j]);
+			}
+		}		
+	}
 
         /* Utworzenie menu */
         my_menu = new_menu((ITEM **)my_items);
@@ -70,7 +99,7 @@ int main()
         set_menu_back(my_menu, JASNY_NIEBIESKI);
         set_menu_grey(my_menu, MOCNY_ZIELONY);
         
-        /* Wykonanie menu */
+        /* Przypięcie menu do okna*/
         post_menu(my_menu);
         wrefresh(my_menu_win);
         
@@ -101,8 +130,16 @@ int main()
         /* Zwalnianie pamięci */
         unpost_menu(my_menu);
         free_menu(my_menu);
-        for(i = 0; i < n_choices; ++i)
-                free_item(my_items[i]);
+         for(int i = 0; i < n_choices_menu; ++i){
+
+		free_item(my_items[i]);
+
+		if(i==1){ 
+			for(int j = 0; j < n_choices_exif; ++j)
+                		free_item(my_items[j]);
+		}
+	}
+	
         endwin();
 }
 
