@@ -10,72 +10,131 @@
 #include "include/style/color_style.h"
 #include "include/style/panel_style.h"
 
-char *choices_menu[] = {
-                        "Analiza EXIF",
-                        "Analiza graficzna",
-                        "Analiza zgromadzonych danych",
-                        "Exit",
-                        (char *)NULL,
-                  };
+void inicialize_program(){
 
-char *choices_exif[] = {
-                        "wybor1",
-                        "wybor2",
-                        "wybor3",
-                        "Exit",
-                        (char *)NULL,
-                  };
-
-
-void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
-
-int main()
-{       
 	ITEM **my_items;
+         WINDOW *my_menu_win;	
+      	int c;
+
+         initscr(); 		/* Inicializacja curses */
+         start_color();
+         cbreak();
+         noecho();
+         keypad(stdscr, TRUE);
+
+         initialize_colors(); 	/* Inicializacja wszystkich kolorow */
+
+}
+
+void elemnts_menu_one(void){
+	char *choices_menu_one[] = {
+			"Analiza Exif",
+			"Analiza graficzna",
+			"Analiza zgromadzonych danych",
+			"Pomoc",
+			"Exit",
+			(char *)NULL,
+		}
+}
+
+void elemnts_menu_exif(void){
+	char *choices_menu_exif[] = {
+                  	"Pszeszukanie danych dysku w poszukiwaniu danych exif",
+			"Zapis znalezionych scierzek do pliku",
+			"Usuniecie danych exif",
+			"Exit",
+			(char *)NULL,
+		}
+}
+
+void elemnts_menu_graphic(void){
+	char *choices_menu_graphic[] = {
+			"Znajdz osobe",
+			"Exit",
+			(char *)NULL,
+		}
+}
+
+void elemnts_menu_date(void){
+	char *choices_menu_date[] = {
+			"Wyswietl tabele z bazy danych",
+			"Analiza danych exif na mapie",
+			"Wyniki analizy graficznej",
+			"Zarzadzaj baza danych",
+			"Exit",
+                           (char *)NULL,
+                  }
+}
+
+void create_menu_one(ITEM **my_items){
+	extern char *choices_menu_one[];
+	int n_choices_menu = 0;
+		n_choices_menu = ARRAY_SIZE(choices_menu_one);
+        		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
+
+		for(int i = 0; i < n_choices_menu; i++){
+		my_items[i] = new_item(choices_menu_one[i], choices_menu_one[i]);
+		}
+
+	}
+
+
+void create_menu_exif(ITEM **my_items){
+	extern char *choices_menu_exif[];
+	int n_choices_menu = 0;
+		n_choices_menu = ARRAY_SIZE(choices_menu_exif);
+        		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
+
+		for(int i = 0; i < n_choices_menu; i++){
+		my_items[i] = new_item(choices_menu_exif[i], choices_menu_exif[i]);
+		}
+
+	}
+
+void create_menu_graphic(ITEM **my_items){
+	extern char *choices_menu_graphic[];
+	int n_choices_menu = 0;
+		n_choices_menu = ARRAY_SIZE(choices_menu_graphic);
+        		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
+
+		for(int i = 0; i < n_choices_menu; i++){
+		my_items[i] = new_item(choices_menu_graphic[i], choices_menu_graphic[i]);
+		}
+
+	}
+
+void create_menu_date(ITEM **my_items){
+	extern char *choices_menu_date[];
+	int n_choices_menu = 0;
+		n_choices_menu = ARRAY_SIZE(choices_menu_date);
+        		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
+
+		for(int i = 0; i < n_choices_menu; i++){
+		my_items[i] = new_item(choices_menu_date[i], choices_menu_date[i]);
+		}
+
+	}
+
+void create_menu(ITEM **my_items){
 	
-         int c;                          
-         MENU *my_menu;
-         WINDOW *my_menu_win;
-         int n_choices_menu = 0;
-	int n_choices_exif = 0;
-        
-        /* Inicializacja curses */
+	MENU *my_menu;
 
-         if(!initscr()) {
-	fprintf(stderr, "Nie udalo uruchomic ncurses\n");
-	return -1;
-	}
+        /* Utworzenie elementow menu */         
+	create_menu_one(my_items);
+	create_menu_exif(my_items);
+	create_menu_graphic(my_items);
+	create_menu_date(my_items);
 
-        start_color();
-        cbreak();
-        noecho();
-        keypad(stdscr, TRUE);
-
-        /* Inicializacja wszystkich kolorow */
-        initialize_colors();
-
-        /* Utworzenie elementow menu */
-         n_choices_menu = ARRAY_SIZE(choices_menu);
-	n_choices_exif = ARRAY_SIZE(choices_menu);
-         my_items = (ITEM **)calloc(n_choices_menu, sizeof(ITEM *));
-	my_items = (ITEM **)calloc(n_choices_exif, sizeof(ITEM *));
-        for(int i = 0; i < n_choices_menu; ++i){
-                  my_items[i] = new_item(choices_menu[i], choices_menu[i]);
-
-		if(i==1){
-			for(int j = 0; j < n_choices_exif; ++j){
-			my_items[j] = new_item(choices_exif[j], choices_exif[j]);
-			}
-		}		
-	}
-
-        /* Utworzenie menu */
+	/* Utworzenie menu */
         my_menu = new_menu((ITEM **)my_items);
 
-        /* Tworzenie obramowania okna gdzie znajduje sie menu*/
-        my_menu_win = newwin(10, 40, 4, 4);
-        keypad(my_menu_win, TRUE);
-     
+	/* Ustawienie opcji menu tak by nie wyświetlac opisu*/
+        menu_opts_off(my_menu, O_SHOWDESC);
+	
+}
+
+void windows(){
+
         /* Ustawienie głównego okna oraz okna podrzędnego */
         set_menu_win(my_menu, my_menu_win);
         set_menu_sub(my_menu, derwin(my_menu_win, 6, 38, 3, 1));
@@ -84,8 +143,22 @@ int main()
         /*  Ustawienie znacznika wyboru opcji z listy menu " * " */
         set_menu_mark(my_menu, " * ");
 
-	/* Ustawienie opcji menu tak by nie wyświetlac opisu*/
-        menu_opts_off(my_menu, O_SHOWDESC);
+        /* Przypięcie menu do okna*/
+        post_menu(my_menu);
+        wrefresh(my_menu_win);
+
+}
+
+void graphic_menu(void){
+
+	/* Tworzenie obramowania okna gdzie znajduje sie menu*/
+        my_menu_win = newwin(10, 40, 4, 4);
+        keypad(my_menu_win, TRUE);
+
+        /* Ustawienie tła dla dla opcjiru oraz koloru listy*/
+        set_menu_fore(my_menu, MOCNY_CZERWONY | A_REVERSE);
+        set_menu_back(my_menu, JASNY_NIEBIESKI);
+        set_menu_grey(my_menu, MOCNY_ZIELONY);
 
         /* Wydrukowanie tytulu okna gdzie znajduje sie menu */
         box(my_menu_win, 0, 0);
@@ -94,22 +167,21 @@ int main()
         mvwhline(my_menu_win, 2, 1, ACS_HLINE, 38);
         mvwaddch(my_menu_win, 2, 39, ACS_RTEE);
 
-        /* Ustawienie tła dla dla opcjiru oraz koloru listy*/
-        set_menu_fore(my_menu, MOCNY_CZERWONY | A_REVERSE);
-        set_menu_back(my_menu, JASNY_NIEBIESKI);
-        set_menu_grey(my_menu, MOCNY_ZIELONY);
-        
-        /* Przypięcie menu do okna*/
-        post_menu(my_menu);
-        wrefresh(my_menu_win);
-        
-        attron(MOCNY_NIEBIESKI);
-        mvprintw(LINES - 2, 0, "Uzyj strzalek oraz klawisza ENTER, apy poruszac sie po programie");
-        mvprintw(LINES - 1, 0, "Wybranie obcji exit z menu oraz wcisniecie klawisza F1 powoduje wyjscie z programu");
-        attroff(MOCNY_NIEBIESKI);
-        refresh();
+}
 
-        while((c = wgetch(my_menu_win)) != KEY_F(1))
+void help_menu(){
+
+        attron(MOCNY_NIEBIESKI);
+        mvprintw(LINES - 2, 0, "Mozesz urzyc strzalek oraz klawisza enter");
+        mvprintw(LINES - 1, 0, "Wcisniecie klawisza F1 powoduje wyjscie z programu");
+        attroff(MOCNY_NIEBIESKI);
+
+}
+
+void open_interfejs(){
+ refresh();
+ while((c = wgetch(my_menu_win)) != KEY_F(1))
+
         {       switch(c)
                 {       case KEY_DOWN:
                                 menu_driver(my_menu, REQ_DOWN_ITEM);
@@ -127,20 +199,26 @@ int main()
                 wrefresh(my_menu_win);
         }       
 
+}
+
+void free_unpost(){
+
         /* Zwalnianie pamięci */
         unpost_menu(my_menu);
         free_menu(my_menu);
-         for(int i = 0; i < n_choices_menu; ++i){
-
+        for(int i = 0; i < n_choices_menu; i++){
 		free_item(my_items[i]);
-
-		if(i==1){ 
-			for(int j = 0; j < n_choices_exif; ++j)
-                		free_item(my_items[j]);
-		}
 	}
 	
         endwin();
+
+}
+void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
+
+int main()
+{       
+        
+
 }
 
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color)
