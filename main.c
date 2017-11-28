@@ -1,4 +1,4 @@
-#include <curses.h>
+#include <ncurses.h>
 #include <menu.h>
 #include <string.h>
 #include <stdlib.h>
@@ -12,7 +12,7 @@
 
 void inicialize_program(){
 
-	ITEM **my_items;
+	ITEM **my_items[3];
          WINDOW *my_menu_win;	
       	int c;
 
@@ -26,7 +26,9 @@ void inicialize_program(){
 
 }
 
-void elemnts_menu_one(void){
+/* Funkcja zawierające elementy podstawowego menu i tworząca dla nich miejsce w pamięci */
+void create_menu_one(ITEM **my_items){
+
 	char *choices_menu_one[] = {
 			"Analiza Exif",
 			"Analiza graficzna",
@@ -35,39 +37,6 @@ void elemnts_menu_one(void){
 			"Exit",
 			(char *)NULL,
 		}
-}
-
-void elemnts_menu_exif(void){
-	char *choices_menu_exif[] = {
-                  	"Pszeszukanie danych dysku w poszukiwaniu danych exif",
-			"Zapis znalezionych scierzek do pliku",
-			"Usuniecie danych exif",
-			"Exit",
-			(char *)NULL,
-		}
-}
-
-void elemnts_menu_graphic(void){
-	char *choices_menu_graphic[] = {
-			"Znajdz osobe",
-			"Exit",
-			(char *)NULL,
-		}
-}
-
-void elemnts_menu_date(void){
-	char *choices_menu_date[] = {
-			"Wyswietl tabele z bazy danych",
-			"Analiza danych exif na mapie",
-			"Wyniki analizy graficznej",
-			"Zarzadzaj baza danych",
-			"Exit",
-                           (char *)NULL,
-                  }
-}
-
-void create_menu_one(ITEM **my_items){
-	extern char *choices_menu_one[];
 	int n_choices_menu = 0;
 		n_choices_menu = ARRAY_SIZE(choices_menu_one);
         		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
@@ -78,9 +47,17 @@ void create_menu_one(ITEM **my_items){
 
 	}
 
-
+/* Funkcja zawierająca elementy podmeniu "Analiza Exif" */
 void create_menu_exif(ITEM **my_items){
-	extern char *choices_menu_exif[];
+
+	char *choices_menu_exif[] = {
+                  	"Pszeszukanie danych dysku w poszukiwaniu danych exif",
+			"Zapis znalezionych scierzek do pliku",
+			"Usuniecie danych exif",
+			"Exit",
+			(char *)NULL,
+		}
+
 	int n_choices_menu = 0;
 		n_choices_menu = ARRAY_SIZE(choices_menu_exif);
         		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
@@ -91,8 +68,15 @@ void create_menu_exif(ITEM **my_items){
 
 	}
 
+/* Funkcja zawierająca elementy podmeniu "Analiza Griaficzna" */
 void create_menu_graphic(ITEM **my_items){
-	extern char *choices_menu_graphic[];
+
+	char *choices_menu_graphic[] = {
+			"Znajdz osobe",
+			"Exit",
+			(char *)NULL,
+		}
+
 	int n_choices_menu = 0;
 		n_choices_menu = ARRAY_SIZE(choices_menu_graphic);
         		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
@@ -103,8 +87,18 @@ void create_menu_graphic(ITEM **my_items){
 
 	}
 
+/* Funkcja zawierająca elementy podmeniu "Analiza Danych" */
 void create_menu_date(ITEM **my_items){
-	extern char *choices_menu_date[];
+
+	char *choices_menu_date[] = {
+			"Wyswietl tabele z bazy danych",
+			"Analiza danych exif na mapie",
+			"Wyniki analizy graficznej",
+			"Zarzadzaj baza danych",
+			"Exit",
+                           (char *)NULL,
+                  }
+
 	int n_choices_menu = 0;
 		n_choices_menu = ARRAY_SIZE(choices_menu_date);
         		my_items = (ITEM **)calloc((n_choices_menu), sizeof(ITEM *));
@@ -117,13 +111,15 @@ void create_menu_date(ITEM **my_items){
 
 void create_menu(ITEM **my_items){
 	
+	/* Inicializacja elementów my_items*/
+
 	MENU *my_menu;
 
-        /* Utworzenie elementow menu */         
-	create_menu_one(my_items);
-	create_menu_exif(my_items);
-	create_menu_graphic(my_items);
-	create_menu_date(my_items);
+        /* Utworzenie elementow menu */        
+	create_menu_one(my_items[0]); /* Podstawowe menu*/
+	create_menu_exif(my_items[1]); /* Podmeniu analiza exif */
+	create_menu_graphic(my_items[2]); /* Podmeniu analiza graficzna */
+	create_menu_date(my_items[3]); /* Podmeniu analiza danych*/
 
 	/* Utworzenie menu */
         my_menu = new_menu((ITEM **)my_items);
