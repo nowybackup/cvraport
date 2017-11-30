@@ -1,20 +1,8 @@
-#include <ncurses.h>
-#include <menu.h>
-#include <string.h>
-#include <stdlib.h>
-#include <panel.h>
-
-#include "include/initialize/colors.c"
-
 #include "cvraport.h"
-#include "include/style/color_style.h"
-#include "include/style/panel_style.h"
 
 void inicialize_program(){
 
-	ITEM **my_items[3];
-         WINDOW *my_menu_win;	
-      	int c;
+	ITEM **my_items;
 
          initscr(); 		/* Inicializacja curses */
          start_color();
@@ -25,6 +13,8 @@ void inicialize_program(){
          initialize_colors(); 	/* Inicializacja wszystkich kolorow */
 
 }
+
+/*memset -> w każdy powstawiać 0 element tabicy */
 
 /* Funkcja zawierające elementy podstawowego menu i tworząca dla nich miejsce w pamięci */
 void create_menu_one(ITEM **my_items){
@@ -122,7 +112,7 @@ void create_menu(ITEM **my_items){
 	create_menu_date(my_items[3]); /* Podmeniu analiza danych*/
 
 	/* Utworzenie menu */
-        my_menu = new_menu((ITEM **)my_items);
+        my_menu = new_menu((ITEM **)my_items[1]);
 
 	/* Ustawienie opcji menu tak by nie wyświetlac opisu*/
         menu_opts_off(my_menu, O_SHOWDESC);
@@ -130,6 +120,8 @@ void create_menu(ITEM **my_items){
 }
 
 void windows(){
+        WINDOW *my_menu_win;
+
 
         /* Ustawienie głównego okna oraz okna podrzędnego */
         set_menu_win(my_menu, my_menu_win);
@@ -137,7 +129,7 @@ void windows(){
         set_menu_format(my_menu, 5, 1);
                         
         /*  Ustawienie znacznika wyboru opcji z listy menu " * " */
-        set_menu_mark(my_menu, " * ");
+        set_menu_mark(my_menu, " -> ");
 
         /* Przypięcie menu do okna*/
         post_menu(my_menu);
@@ -175,6 +167,9 @@ void help_menu(){
 }
 
 void open_interfejs(){
+
+ int c;
+
  refresh();
  while((c = wgetch(my_menu_win)) != KEY_F(1))
 
