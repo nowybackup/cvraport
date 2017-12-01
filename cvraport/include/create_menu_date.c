@@ -3,10 +3,9 @@
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-void create_menu_date(){
+MENU create_menu_date(MENU *my_menu){
 
 	ITEM **my_items;
-	MENU *my_menu;
 
  	char *choices[] = {
 			"Wyswietl tabele z bazy danych",
@@ -34,4 +33,9 @@ void create_menu_date(){
 
 	/* Ustawienie opcji menu one tak, aby nie wyświetlała opisu*/
          menu_opts_off(my_menu, O_SHOWDESC);
+
+	/* Ustawienie kolorow i parametrow czcionki*/
+	style_menu(my_menu);
+
+	return my_menu;
 }
