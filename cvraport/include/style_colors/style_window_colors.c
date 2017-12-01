@@ -1,14 +1,7 @@
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
 
 
-WINDOW style_window(WINDOW *my_menu_win){
-
-		start_color();
-		initialize_colors(); 	
-
-           	/* Tworzenie obramowania okna gdzie znajduje sie menu*/
-   		my_menu_win = newwin(10, 40, 4, 4);
-     		keypad(my_menu_win, TRUE);
+WINDOW style_window_colors(WINDOW *my_menu_win){
 		
      		/* Wydrukowanie tytulu okna gdzie znajduje sie menu */
      		box(my_menu_win, 0, 0);
