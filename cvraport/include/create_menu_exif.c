@@ -1,5 +1,6 @@
-#include <ncurses>
+#include <ncurses.h>
 #include <menu.h>
+#include <stdlib.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
@@ -13,7 +14,7 @@ MENU create_menu_exif(MENU *my_menu){
 			"Usuniecie danych exif",
 			"Exit",
 			(char *)NULL,
-		}
+		};
 
 	
 		int n_choices = 0;

@@ -1,5 +1,6 @@
-#include <ncurses>
+#include <ncurses.h>
 #include <menu.h>
+#include <stdlib.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
@@ -11,7 +12,7 @@ MENU create_menu_graphic(MENU *my_menu){
 			"Znajdz osobe",
 			"Exit",
 			(char *)NULL,
-		}
+		};
 	
 
 		int n_choices = 0;

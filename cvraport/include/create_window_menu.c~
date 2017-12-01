@@ -1,4 +1,4 @@
-#include <ncurses.h>
+#include <ncurses>
 #include <menu.h>
 
 void create_menu_window(WINDOW *my_menu_win){
@@ -50,6 +50,4 @@ void create_menu_window(WINDOW *my_menu_win){
                  wrefresh(my_menu_win);
          } 
 
-	unpost_menu(my_menu);
-         free_menu(my_menu);
 }

@@ -1,0 +1,7 @@
+#include <ncurses>
+
+void open_ncurses(){
+	initscr();
+	create_menu_window();
+	endwin();
+}

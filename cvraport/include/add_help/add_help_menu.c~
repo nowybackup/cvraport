@@ -1,3 +1,5 @@
+#include <ncurses.h>
+
 void add_help_menu(){
 	attron(MOCNY_NIEBIESKI);
          mvprintw(LINES - 2, 0, "Mozesz urzyc strzalek oraz klawisza enter");

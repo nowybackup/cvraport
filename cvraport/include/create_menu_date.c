@@ -1,5 +1,6 @@
-#include <ncurses>
+#include <ncurses.h>
 #include <menu.h>
+#include <stdlib.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
@@ -14,10 +15,10 @@ MENU create_menu_date(MENU *my_menu){
 			"Zarzadzaj baza danych",
 			"Exit",
                            (char *)NULL,
-                  }
+                  };
 
 	
-		int n_choices = 0;
+		int n_choices;
 		n_choices = ARRAY_SIZE(choices);
         		my_items = (ITEM **)calloc((n_choices), sizeof(ITEM *));
 
