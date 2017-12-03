@@ -1,6 +1,6 @@
 #include <menu.h>
 
-MENU style_menu(MENU *my_menu){
+void style_menu(MENU *my_menu){
 	
 	    start_color();
 	
@@ -15,7 +15,5 @@ MENU style_menu(MENU *my_menu){
 
 	   /*  Ustawienie znacznika wyboru opcji z listy menu " * " */
              set_menu_mark(my_menu, " -> ");
-
-	   return my_menu;
 
 }

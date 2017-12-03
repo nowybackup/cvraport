@@ -1,22 +1,20 @@
 #include <ncurses.h>
 #include <menu.h>
 #include <stdlib.h>
-
+#include "func_colors.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-MENU create_menu_exif(MENU *my_menu){
+void create_menu_graphic(MENU *my_menu){
 
 	ITEM **my_items;
 
  	char *choices[] = {
-                  	"Pszeszukanie dysku w poszukiwaniu danych exif",
-			"Zapis znalezionych scierzek do pliku",
-			"Usuniecie danych exif",
+			"Znajdz osobe",
 			"Exit",
 			(char *)NULL,
 		};
-
 	
+
 		int n_choices = 0;
 		n_choices = ARRAY_SIZE(choices);
         		my_items = (ITEM **)calloc((n_choices), sizeof(ITEM *));

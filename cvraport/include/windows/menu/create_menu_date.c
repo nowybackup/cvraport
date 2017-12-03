@@ -2,9 +2,10 @@
 #include <menu.h>
 #include <stdlib.h>
 
+#include "../style/style_colors/func_colors.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-MENU create_menu_date(MENU *my_menu){
+void create_menu_date(MENU *my_menu){
 
 	ITEM **my_items;
 

@@ -1,7 +1,9 @@
+#include <ncurses.h>
+#include <string.h>
+
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color);
 
-
-WINDOW style_window_colors(WINDOW *my_menu_win){
+void style_window_colors(WINDOW *my_menu_win){
 		
      		/* Wydrukowanie tytulu okna gdzie znajduje sie menu */
      		box(my_menu_win, 0, 0);
@@ -10,9 +12,8 @@ WINDOW style_window_colors(WINDOW *my_menu_win){
     		mvwhline(my_menu_win, 2, 1, ACS_HLINE, 38);
     		mvwaddch(my_menu_win, 2, 39, ACS_RTEE);
 
-		return my_menu_win;
 }
-
+/* opencv sarclas fire */
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color)
 {       int length, x, y;
         float temp;

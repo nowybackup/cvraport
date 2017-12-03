@@ -1,13 +1,14 @@
 #include <ncurses.h>
 #include <menu.h>
 
+#include "menu/func_menu.h"
+#include "help/func_help.h"
+#include "func/func_style.h"
+
 void create_menu_window(WINDOW *my_menu_win){
 	
-	cbreak();
-         noecho();
          keypad(stdscr, TRUE);
 
-	int c;
 	MENU *my_menu;
 	
 	/* Ustawienie menu */
@@ -32,6 +33,7 @@ void create_menu_window(WINDOW *my_menu_win){
 	/* Wyświetlenie pomocy dla menu */
 	add_help_menu();
 
+	int c;
          while((c = wgetch(my_menu_win)) != KEY_F(1))
          {       switch(c)
                  {       case KEY_DOWN:

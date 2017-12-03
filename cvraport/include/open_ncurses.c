@@ -1,7 +1,11 @@
 #include <ncurses.h>
+#include "func_windows.h"
 
 void open_ncurses(){
 	initscr();
-	create_menu_window();
+	cbreak();
+         noecho();
+	WINDOW *my_menu_win;
+	create_menu_window(my_menu_win);
 	endwin();
 }

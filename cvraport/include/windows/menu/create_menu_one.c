@@ -2,9 +2,10 @@
 #include <menu.h>
 #include <stdlib.h>
 
+#include "../style/style_colors/func_colors.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-MENU create_menu_one(MENU *my_menu){
+void create_menu_one(MENU *my_menu){
 
 	ITEM **my_items;
 
@@ -26,9 +27,6 @@ MENU create_menu_one(MENU *my_menu){
 		my_items[i] = new_item(choices[i], choices[i]);
 		}
 
-	/* Utowrzenie lementow menu one */
-	create_menu_one(my_items);
-
 	/* Utworzenie menu one */
          my_menu = new_menu((ITEM **)my_items);
 
@@ -38,5 +36,4 @@ MENU create_menu_one(MENU *my_menu){
 	/* Ustawienie kolorow i parametrow czcionki*/
 	style_menu(my_menu);
 
-	return my_menu;
 }

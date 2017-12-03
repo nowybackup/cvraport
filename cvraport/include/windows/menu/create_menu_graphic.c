@@ -1,10 +1,11 @@
 #include <ncurses.h>
 #include <menu.h>
-#include <stdlib>
+#include <stdlib.h>
 
+#include "../style/style_colors/func_colors.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-MENU create_menu_graphic(MENU *my_menu){
+void create_menu_graphic(MENU *my_menu){
 
 	ITEM **my_items;
 
