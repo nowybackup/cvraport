@@ -1,10 +1,23 @@
 #include <ncurses.h>
 #include "windows/func_windows.h"
 
-void open_ncurses(){
+void cvraport_open(){
 	initscr();
 	cbreak();
          noecho();
-	create_menu_window();
+         keypad(stdscr, TRUE);
+}
+
+void cvraport_close(){
+
 	endwin();
+}
+
+void open_ncurses(){
+
+	cvraport_open();	
+
+	create_menu_window();
+
+	cv_raport_close();
 }

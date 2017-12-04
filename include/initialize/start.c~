@@ -1,6 +1,0 @@
-void start(){
-	if(!initscr()) {
-	fprintf(stderr, "Nie udalo uruchomic");
-	return -1;
-	}
-}

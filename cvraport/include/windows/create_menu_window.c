@@ -15,11 +15,11 @@ void create_menu_window(){
 	my_menu_win = newwin(10, 40, 4, 4);
          keypad(my_menu_win, TRUE);
 
-	/* Ustawienie parametrów graficznych okna */
-         style_window_colors(my_menu_win);
-
 	/* Wyświetlenie pomocy dla menu */
 	add_help_menu();
+
+	/* Ustawienie parametrów graficznych okna */
+         style_window_colors(my_menu_win);
 
 	/* Ustawienie menu */
 	create_menu_one(my_menu_win);
