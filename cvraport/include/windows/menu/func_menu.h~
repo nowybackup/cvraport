@@ -1,14 +1,6 @@
-/* inicialize */
-#include "open_ncurses.c"
-
 /* elements menu */
 #include "create_menu_date.c"
 #include "create_menu_exif.c"
 #include "create_menu_graphic.c"
 #include "create_menu_one.c"
 #include "create_menu_window.c"
-
-/* help */
-#include "add_help/add_help_menu.c"
-
-/* style size (empty) */

@@ -3,4 +3,3 @@
 #include "create_menu_exif.c"
 #include "create_menu_graphic.c"
 #include "create_menu_one.c"
-#include "create_menu_window.c"

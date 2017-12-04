@@ -1,5 +1,5 @@
 #include <ncurses.h>
-#include "func_windows.h"
+#include "windows/func_windows.h"
 
 void open_ncurses(){
 	initscr();

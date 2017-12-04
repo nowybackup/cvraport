@@ -2,7 +2,7 @@
 #include <menu.h>
 #include <stdlib.h>
 
-#include "../style/style_colors/func_colors.h"
+#include "style/func_menu.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
 void create_menu_date(MENU *my_menu){
@@ -17,7 +17,6 @@ void create_menu_date(MENU *my_menu){
 			"Exit",
                            (char *)NULL,
                   };
-
 	
 		int n_choices;
 		n_choices = ARRAY_SIZE(choices);

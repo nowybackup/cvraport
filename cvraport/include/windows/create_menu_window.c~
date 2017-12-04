@@ -3,6 +3,7 @@
 
 #include "menu/func_menu.h"
 #include "help/func_help.h"
+#include "style/style/func_windows.h"
 
 void create_menu_window(WINDOW *my_menu_win){
 	
