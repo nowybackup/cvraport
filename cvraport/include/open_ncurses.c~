@@ -8,5 +8,4 @@ void open_ncurses(){
 	WINDOW *my_menu_win;
 	create_menu_window(my_menu_win);
 	endwin();
-	return 0;
 }
