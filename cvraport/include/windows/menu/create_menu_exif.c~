@@ -14,7 +14,7 @@ void create_menu_exif(WINDOW *my_menu_win){
                   	"Pszeszukanie dysku w poszukiwaniu danych exif",
 			"Zapis znalezionych scierzek do pliku",
 			"Usuniecie danych exif",
-			"Return",
+			"Cofnij",
 			(char *)NULL,
 		};
 
@@ -73,14 +73,15 @@ int c;
 
                  wrefresh(my_menu_win);
          } 
-				if( item_name(current_item(my_menu)) == choices[0]){
+				if( item_name(current_item(my_menu)) == choices[3]){
+					pos_menu_cursor(my_menu);
 					unpost_menu(my_menu);
-      	
-					create_menu_exif(my_menu_win);
-				}		
+					free_menu(my_menu);
+      					
+					create_menu_one(my_menu_win);
+				}
 
-				pos_menu_cursor(my_menu);
-
+	pos_menu_cursor(my_menu);
 	unpost_menu(my_menu);
          free_menu(my_menu);
 }

@@ -73,12 +73,7 @@ int c;
 
                  wrefresh(my_menu_win);
          } 
-				if( item_name(current_item(my_menu)) == choices[0]){
-					unpost_menu(my_menu);
-      	
-					create_menu_exif(my_menu_win);
-				}		
-
+	
 				pos_menu_cursor(my_menu);
 
 	unpost_menu(my_menu);

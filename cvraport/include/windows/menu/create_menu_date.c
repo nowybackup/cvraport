@@ -15,7 +15,7 @@ void create_menu_date(WINDOW *my_menu_win){
 			"Analiza danych exif na mapie",
 			"Wyniki analizy graficznej",
 			"Zarzadzaj baza danych",
-			"Return",
+			"Cofnij",
                            (char *)NULL,
                   };
 	
@@ -73,7 +73,7 @@ int c;
 
                  wrefresh(my_menu_win);
          } 
-	
+			
 				pos_menu_cursor(my_menu);
 
 	unpost_menu(my_menu);
