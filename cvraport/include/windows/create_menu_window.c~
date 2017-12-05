@@ -5,11 +5,9 @@
 #include "help/func_help.h"
 #include "style/func_windows.h"
 
-void create_menu_window(){
+void create_menu_window(MENU *my_menu;){
 
 	WINDOW *my_menu_win;
-	
-         keypad(stdscr, TRUE);
 	
 	/* Utworzenie podstawowego okna*/
 	my_menu_win = newwin(10, 40, 4, 4);
@@ -22,6 +20,11 @@ void create_menu_window(){
          style_window_colors(my_menu_win);
 
 	/* Ustawienie menu */
-	create_menu_one(my_menu_win);
+	create_menu_one(my_menu_win, my_menu);
+
+	/* funckcja (wartosc 1 , wartosc 2) */
+	/* funcka   (flaga     , wybrany numer) */
+	/* flaga informuje o aktywnosci danego pliku */
+	/* wybrany numer inf*/
 	
 }

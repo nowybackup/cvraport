@@ -19,5 +19,5 @@ void open_ncurses(){
 
 	create_menu_window();
 
-	cv_raport_close();
+	cvraport_close();
 }

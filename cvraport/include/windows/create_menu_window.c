@@ -9,8 +9,6 @@ void create_menu_window(){
 
 	WINDOW *my_menu_win;
 	
-         keypad(stdscr, TRUE);
-	
 	/* Utworzenie podstawowego okna*/
 	my_menu_win = newwin(10, 40, 4, 4);
          keypad(my_menu_win, TRUE);
@@ -23,5 +21,10 @@ void create_menu_window(){
 
 	/* Ustawienie menu */
 	create_menu_one(my_menu_win);
+
+	/* funckcja (wartosc 1 , wartosc 2) */
+	/* funcka   (flaga     , wybrany numer) */
+	/* flaga informuje o aktywnosci danego pliku */
+	/* wybrany numer inf*/
 	
 }

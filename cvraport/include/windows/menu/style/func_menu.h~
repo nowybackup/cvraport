@@ -1,1 +1,7 @@
- #include "menu_colors.c"
+#ifndef LIB_H
+#define LIB_H
+
+#include "menu_colors.c"
+#include "getch_menu.c"
+
+#endif
