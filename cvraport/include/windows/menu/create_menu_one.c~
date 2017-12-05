@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 #include "style/func_menu.h"
+#include "func_menu.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
 void create_menu_one(WINDOW *my_menu_win){

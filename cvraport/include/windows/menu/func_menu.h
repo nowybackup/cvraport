@@ -1,4 +1,4 @@
-/* elements menu */
+/* elements create menu */
 #ifndef CREATE_MENU_H
 #define CREATE_MENU_H
 

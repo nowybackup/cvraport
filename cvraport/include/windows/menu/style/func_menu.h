@@ -1,5 +1,7 @@
-#ifndef LIB_H
-#define LIB_H
+/* func menu style*/
+
+#ifndef FUNC_MENU_COLORS_H
+#define FUNC_MENU_COLORS_H
 
 #include "menu_colors.c"
 
