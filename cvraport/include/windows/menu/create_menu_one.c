@@ -52,7 +52,7 @@ void create_menu_one(WINDOW *my_menu_win){
 	/* funcka (my_menu_win, my_menu) */
 
 	int c;
-         while((c = getch()) != KEY_F(1))
+         while((c = getch()) != 10 )
          {       switch(c)
                  {       case KEY_DOWN:
                                  menu_driver(my_menu, REQ_DOWN_ITEM);
@@ -69,31 +69,40 @@ void create_menu_one(WINDOW *my_menu_win){
 		       case 10: /* Enter */
                                  move(20, 0);
         	   		      clrtoeol();
-        	   		      mvprintw(20, 0, "Wybrano element : %s", 
+        	   		      mvprintw(20, 0, "Gotowy element : %s", 
             		      item_name(current_item(my_menu)));
-
-				if( item_name(current_item(my_menu)) == choices[0]){
-					unpost_menu(my_menu);
-      					free_menu(my_menu);
-					create_menu_exif(my_menu_win);
-				}		
-				if( item_name(current_item(my_menu)) == choices[1]){
-					unpost_menu(my_menu);
-      					free_menu(my_menu);
-					create_menu_graphic(my_menu_win);
-				}
-				if( item_name(current_item(my_menu)) == choices[2]){
-					unpost_menu(my_menu);
-      					free_menu(my_menu);
-					create_menu_date(my_menu_win);
-				}
-
-	    		      pos_menu_cursor(my_menu);
+		      
 			      break;
                  }
 
                  wrefresh(my_menu_win);
          } 
+				if( item_name(current_item(my_menu)) == choices[0]){
+					unpost_menu(my_menu);
+      	
+					create_menu_exif(my_menu_win);
+				}		
+				if( item_name(current_item(my_menu)) == choices[1]){
+					unpost_menu(my_menu);
+      				
+					create_menu_graphic(my_menu_win);
+				}
+				if( item_name(current_item(my_menu)) == choices[2]){
+					unpost_menu(my_menu);
+      			
+					create_menu_date(my_menu_win);
+				}
+				/*if( item_name(current_item(my_menu)) == choices[3]){
+					unpost_menu(my_menu);
+      			
+					help(my_menu_win);
+				}
+				if( item_name(current_item(my_menu)) == choices[4]){
+					unpost_menu(my_menu);
+      			
+					exit(my_menu_win);
+				} */
+				pos_menu_cursor(my_menu);
 
 	unpost_menu(my_menu);
          free_menu(my_menu);
