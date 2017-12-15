@@ -2,15 +2,12 @@
 #include <menu.h>
 #include <stdlib.h>
 
-#include "style/func_menu.h"
+#include "func_menu.h"
+#include "style/func_style.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-void create_menu_date(WINDOW *my_menu_win){
-
-	ITEM **my_items;
-	MENU *my_menu;
-
- 	char *choices[] = {
+void create_menu_date(){
+	char *choices[] = {
 			"Wyswietl tabele z bazy danych",
 			"Analiza danych exif na mapie",
 			"Wyniki analizy graficznej",
@@ -18,6 +15,29 @@ void create_menu_date(WINDOW *my_menu_win){
 			"Cofnij",
                            (char *)NULL,
                   };
+	ITEM **my_items;
+	MENU *my_menu;
+	WINDOW *my_menu_win;
+
+	initscr();
+	cbreak();
+         noecho();
+         keypad(stdscr, TRUE);
+	
+	/* Utworzenie podstawowego okna*/
+	my_menu_win = newwin(10, 40, 4, 4);
+         keypad(my_menu_win, TRUE);
+
+	/* Wyświetlenie pomocy dla menu */
+	attron(COLOR_PAIR(2));
+         mvprintw(LINES - 2, 0, "Mozesz urzyc strzalek oraz klawisza enter");
+         mvprintw(LINES - 1, 0, "Wcisniecie klawisza F1 powoduje wyjscie z 		programu");
+         attroff(COLOR_PAIR(2));
+
+	/* Ustawienie parametrów graficznych okna */
+         style_window_colors(my_menu_win);
+
+ 	
 	
 		int n_choices;
 		n_choices = ARRAY_SIZE(choices);
@@ -78,5 +98,7 @@ int c;
 
 	unpost_menu(my_menu);
          free_menu(my_menu);
+
+	endwin();
 
 }

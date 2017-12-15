@@ -1,7 +1,7 @@
 #include <stdlib.h>
-#include "include/open_ncurses.c"
+#include "include/open.c"
 
 int main(void){
-	open_ncurses();
+	open();
 	return 0;
 }

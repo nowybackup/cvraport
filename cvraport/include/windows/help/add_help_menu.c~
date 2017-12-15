@@ -1,9 +1,0 @@
-#include <ncurses.h>
-
-void add_help_menu(){
-	attron(COLOR_PAIR(2));
-         mvprintw(LINES - 3, 0, "Zaznaczysz opcje klawiszem ENTER");
-         mvprintw(LINES - 2, 0, "Potem przejdź do niej wciskając klawisz F12");
-	mvprintw(LINES - 1, 0, "Klawisz F1 powoduje wyjście z programu");
-         attroff(COLOR_PAIR(2));
-}

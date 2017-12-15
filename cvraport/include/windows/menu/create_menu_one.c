@@ -3,15 +3,15 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "style/func_menu.h"
+#include "func_menu.h"
+#include "style/func_style.h"
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-void create_menu_one(WINDOW *my_menu_win){
+static int wybor = 0;
 
-	ITEM **my_items;
-	MENU *my_menu;
+static void create_menu_one(){
 
- 	char *choices[] = {
+static char *choices[] = {
 			"Analiza Exif",
 			"Analiza graficzna",
 			"Analiza zgromadzonych danych",
@@ -19,15 +19,36 @@ void create_menu_one(WINDOW *my_menu_win){
 			"Exit",
 			(char *)NULL,
 		};
-
 	
-		int n_choices = 0;
-		n_choices = ARRAY_SIZE(choices);
-        		my_items = (ITEM **)calloc((n_choices), sizeof(ITEM *));
+	ITEM **my_items;
+	MENU *my_menu;
+	WINDOW *my_menu_win;
 
-		for(int i = 0; i < n_choices; i++){
+	initscr();
+	cbreak();
+         noecho();
+         keypad(stdscr, TRUE);
+	
+	/* Utworzenie podstawowego okna*/
+	my_menu_win = newwin(10, 40, 4, 4);
+         keypad(my_menu_win, TRUE);
+
+	/* Wyświetlenie pomocy dla menu */
+	attron(COLOR_PAIR(2));
+         mvprintw(LINES - 2, 0, "Mozesz urzyc strzalek oraz klawisza enter");
+         mvprintw(LINES - 1, 0, "Wcisniecie klawisza F1 powoduje wyjscie z 		programu");
+         attroff(COLOR_PAIR(2));
+
+	/* Ustawienie parametrów graficznych okna */
+         style_window_colors(my_menu_win);
+	
+	int n_choices = 0;
+	n_choices = ARRAY_SIZE(choices);
+       	my_items = (ITEM **)calloc((n_choices), sizeof(ITEM *));
+
+	for(int i = 0; i < n_choices; i++){
 		my_items[i] = new_item(choices[i], choices[i]);
-		}
+	}
 
 	/* Utworzenie menu one */
          my_menu = new_menu((ITEM **)my_items);
@@ -69,42 +90,59 @@ void create_menu_one(WINDOW *my_menu_win){
 		       case 10: /* Enter */
                                  move(20, 0);
         	   		      clrtoeol();
-        	   		      mvprintw(20, 0, "Gotowy element : %s", 
-            		      item_name(current_item(my_menu)));
-		      
+			      if( item_name(current_item(my_menu)) == choices[0]){
+					wybor = 0;
+			      }
+			      if( item_name(current_item(my_menu)) == choices[1]){
+					wybor = 1;
+			      }
+			      if( item_name(current_item(my_menu)) == choices[2]){
+					wybor = 2;
+			      }
+			      if( item_name(current_item(my_menu)) == choices[3]){
+					wybor = 3;
+			      }
+			      if( item_name(current_item(my_menu)) == choices[4]){
+					wybor = 4;
+			      }
 			      break;
                  }
 
                  wrefresh(my_menu_win);
-         } 
-				if( item_name(current_item(my_menu)) == choices[0]){
-					unpost_menu(my_menu);
-      	
-					create_menu_exif(my_menu_win);
-				}		
-				if( item_name(current_item(my_menu)) == choices[1]){
-					unpost_menu(my_menu);
-      				
-					create_menu_graphic(my_menu_win);
-				}
-				if( item_name(current_item(my_menu)) == choices[2]){
-					unpost_menu(my_menu);
-      			
-					create_menu_date(my_menu_win);
-				}
-				/*if( item_name(current_item(my_menu)) == choices[3]){
-					unpost_menu(my_menu);
-      			
-					help(my_menu_win);
-				}
-				if( item_name(current_item(my_menu)) == choices[4]){
-					unpost_menu(my_menu);
-      			
-					exit(my_menu_win);
-				} */
-				pos_menu_cursor(my_menu);
-
+         }
+         
+         pos_menu_cursor(my_menu);
 	unpost_menu(my_menu);
          free_menu(my_menu);
-
+	endwin();
 }
+
+void sterowanie_one(){ /* ponowienie definicji funkcji*/
+	create_menu_one();
+	if( wybor == 0){
+		sterowanie_exif(); /* error zla deklaracja*/
+	}		
+	
+	if( wybor == 1){
+		create_menu_graphic(); /* zla deklaracja */
+	}
+	
+	/*if( item_name(current_item(my_menu)) == choices[2]){
+		unpost_menu(my_menu);
+      
+		create_menu_date();
+	}
+	if( item_name(current_item(my_menu)) == choices[3]){
+		unpost_menu(my_menu);
+     
+		help();
+	}
+	if( item_name(current_item(my_menu)) == choices[4]){
+		unpost_menu(my_menu);
+      
+		exit();
+	} */
+	
+	system("clear");
+}
+

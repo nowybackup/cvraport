@@ -1,30 +1,9 @@
-#include <ncurses.h>
-#include <menu.h>
-
-#include "menu/func_menu.h"
-#include "help/func_help.h"
-#include "style/func_windows.h"
+#include <stdlib.h>
+#include "menu/create_menu_one.c"
 
 void create_menu_window(){
 
-	WINDOW *my_menu_win;
-	
-	/* Utworzenie podstawowego okna*/
-	my_menu_win = newwin(10, 40, 4, 4);
-         keypad(my_menu_win, TRUE);
-
-	/* Wyświetlenie pomocy dla menu */
-	add_help_menu();
-
-	/* Ustawienie parametrów graficznych okna */
-         style_window_colors(my_menu_win);
-
 	/* Ustawienie menu */
-	create_menu_one(my_menu_win);
-
-	/* funckcja (wartosc 1 , wartosc 2) */
-	/* funcka   (flaga     , wybrany numer) */
-	/* flaga informuje o aktywnosci danego pliku */
-	/* wybrany numer inf*/
+	sterowanie_one();
 	
 }

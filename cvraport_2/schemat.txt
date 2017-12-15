@@ -1,0 +1,64 @@
+|main.c:
+ |
+ |
+ |_____ncurses
+ |    |
+ |    |____menu /* zapewnia komunikacje miedzy elementami menu */
+ |    |   |
+ |    |   |____create_menu_one.c
+ |    |   |____create_menu_exif.c
+ |    |   |____create_menu_graphic.c
+ |    |   |____create_menu_date.c
+ |    |   |____create_menu_help.c
+ |    |   |____menu.h
+ |    |   
+ |    |____panele  /* interfejs przyjmujacy parametry dla analizy wybranej z menu */
+ |    |   |
+ |    |   |____analiza_exif
+ |    |   |   |
+ |    |   |   |____exif_find.c
+ |    |   |   |____exif_save.c
+ |    |   |   |____exif_delete.c
+ |    |   |   |____exif.h
+ |    |   |    
+ |    |   |____analiza_graphic
+ |    |   |   |
+ |    |   |   |____graphic_find.c
+ |    |   |   |____graphic.h
+ |    |   |   
+ |    |   |____analiza_date
+ |    |   |   |
+ |    |   |   |____wyswietl_tabele_exif.c
+ |    |   |   |____wyswietl_tabele_exif_na_mapie.c 	/* (paramets) */
+ |    |   |   |____wyswietl_wyniki_analizy_graficznej.c
+ |    |   |   |____zarzadzanie_baza_danych.c
+ |    |   |   |____date.h
+ |    |   |   
+ |    |   |____panel_help
+ |    |       |
+ |    |       |____analiza_exif.c
+ |    |       |____analiza_graficzna.c
+ |    |       |____analiza_wynikow.c
+ |    |
+ |    |____style /* grafika projektu */
+ |    |   |
+ |    |   |____menu.c
+ |    |   |____panel.c
+ |    |   |____help.c
+ |    |   |____style.h
+ |    |   
+ |    |____help /* system */
+ |
+ |	
+ |_____bash(algorytms) /* przyjmuje argumenty przychodzace z interfejsu graficznego i je wykonuje */
+ |    |
+ |    |____exif
+ |    |   |
+ |    |   |____exif_find.c
+ |    |   |____exif_save.c
+ |    |
+ |    |____graphic
+ |    |   |
+ |    |   |____algorytm
+ |
+ |____
