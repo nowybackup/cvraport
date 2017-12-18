@@ -1,13 +1,14 @@
 #include "menu.h"
 
-char *choices[] = {
-                 	"Szukanie po twarzy",
-		"Pomoc",
-		"Cofnij",
-		(char *)NULL,
-        };
 
-void create_menu_one(){     
+
+void create_menu_graphic(){     
+                    
+        char *choices[] = {
+                 	"Szukanie po twarzy",
+		"Exit",
+		(char *)NULL,
+        };           
                     
         int n_choices;
         
@@ -106,6 +107,18 @@ void create_menu_one(){
 	}
 	
 	if( item_name(current_item(my_menu)) == choices[2]){
+		unpost_menu(my_menu);
+		free_menu(my_menu);
+		for(int i = 0; i < n_choices; ++i)
+			free_item(my_items[i]);
+		endwin();
+		my_items = NULL;
+		my_menu = NULL;
+		my_menu_win = NULL;
+		create_menu_one();
+	}
+	
+	if( item_name(current_item(my_menu)) == NULL){
 		unpost_menu(my_menu);
 		free_menu(my_menu);
 		for(int i = 0; i < n_choices; ++i)

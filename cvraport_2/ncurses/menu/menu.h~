@@ -23,11 +23,13 @@ void print_in_middle(WINDOW *win, int starty, int startx, int width, char *strin
 
 void create_menu_one();
 void create_menu_exif();
+void create_menu_date();
 void create_menu_graphic();
 void create_menu_help();
 void create_menu_exit();
 
 /*przekierowanie do innego modulu*/
 
-#endif
 
+
+#endif

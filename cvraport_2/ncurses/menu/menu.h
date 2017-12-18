@@ -26,9 +26,11 @@ void create_menu_exif();
 void create_menu_date();
 void create_menu_graphic();
 void create_menu_help();
-void create_menu_exit();
+
+int create_menu_exit();
 
 /*przekierowanie do innego modulu*/
 
-#endif
 
+
+#endif

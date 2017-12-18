@@ -1,14 +1,16 @@
 #include "menu.h"
 
-char *choices[] = {
+
+
+void create_menu_help(){     
+                
+        char *choices[] = {
                  	"Analiza exif",
 		"Analiza graficzna",
 		"Analiza wynikow",
 		"Exit",
 		(char *)NULL,
-        };
-
-void create_menu_one(){     
+        };       
                     
         int n_choices;
         
@@ -127,7 +129,7 @@ void create_menu_one(){
 		my_items = NULL;
 		my_menu = NULL;
 		my_menu_win = NULL;
-		/* przekierowanie do innego modulu */
+		create_menu_one();
 	}
 	
 	if( item_name(current_item(my_menu)) == NULL){

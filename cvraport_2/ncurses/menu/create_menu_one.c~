@@ -1,5 +1,7 @@
 #include "menu.h"
 
+void create_menu_one(){
+
 char *choices[] = {
                  	"Analiza Exif",
 		"Analiza graficzna",
@@ -8,8 +10,6 @@ char *choices[] = {
 		"Exit",
 		(char *)NULL,
         };
-
-void create_menu_one(){     
                     
         int n_choices;
         
@@ -92,15 +92,18 @@ void create_menu_one(){
 		my_items = NULL;
 		my_menu = NULL;
 		my_menu_win = NULL;
-		// create_menu_exif();
+		create_menu_exif();
 	}
-	/*
+	
 	if( item_name(current_item(my_menu)) == choices[1]){
 		unpost_menu(my_menu);
 		free_menu(my_menu);
 		for(int i = 0; i < n_choices; ++i)
 			free_item(my_items[i]);
 		endwin();
+		my_items = NULL;
+		my_menu = NULL;
+		my_menu_win = NULL;
 		create_menu_graphic();
 	}
 	
@@ -110,6 +113,9 @@ void create_menu_one(){
 		for(int i = 0; i < n_choices; ++i)
 			free_item(my_items[i]);
 		endwin();
+		my_items = NULL;
+		my_menu = NULL;
+		my_menu_win = NULL;
 		create_menu_date();
 	}
 	
@@ -119,6 +125,9 @@ void create_menu_one(){
 		for(int i = 0; i < n_choices; ++i)
 			free_item(my_items[i]);
 		endwin();
+		my_items = NULL;
+		my_menu = NULL;
+		my_menu_win = NULL;
 		create_menu_help();
 	}
 	
@@ -128,6 +137,9 @@ void create_menu_one(){
 		for(int i = 0; i < n_choices; ++i)
 			free_item(my_items[i]);
 		endwin();
+		my_items = NULL;
+		my_menu = NULL;
+		my_menu_win = NULL;
 		create_menu_exit();
 	}
 	
@@ -137,9 +149,12 @@ void create_menu_one(){
 		for(int i = 0; i < n_choices; ++i)
 			free_item(my_items[i]);
 		endwin();
+		my_items = NULL;
+		my_menu = NULL;
+		my_menu_win = NULL;
 		create_menu_exit();
 	}
-	*/
+	
 }
 
 void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string, chtype color){

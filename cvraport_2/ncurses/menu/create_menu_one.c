@@ -1,6 +1,8 @@
 #include "menu.h"
 
-char *choices[] = {
+void create_menu_one(){
+
+	char *choices[] = {
                  	"Analiza Exif",
 		"Analiza graficzna",
 		"Analiza zgromadzonych danych",
@@ -8,8 +10,6 @@ char *choices[] = {
 		"Exit",
 		(char *)NULL,
         };
-
-void create_menu_one(){     
                     
         int n_choices;
         

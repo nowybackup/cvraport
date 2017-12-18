@@ -14,19 +14,19 @@
  |    |   
  |    |____panele  /* interfejs przyjmujacy parametry dla analizy wybranej z menu */
  |    |   |
- |    |   |____exif
+ |    |   |____analiza_exif
  |    |   |   |
  |    |   |   |____exif_find.c
  |    |   |   |____exif_save.c
  |    |   |   |____exif_delete.c
  |    |   |   |____exif.h
  |    |   |    
- |    |   |____graphic
+ |    |   |____analiza_graphic
  |    |   |   |
  |    |   |   |____graphic_find.c
  |    |   |   |____graphic.h
  |    |   |   
- |    |   |____date
+ |    |   |____analiza_date  /* przedstawia informacje z bazy danych */
  |    |   |   |
  |    |   |   |____wyswietl_tabele_exif.c
  |    |   |   |____wyswietl_tabele_exif_na_mapie.c 	/* (paramets) */
@@ -34,8 +34,11 @@
  |    |   |   |____zarzadzanie_baza_danych.c
  |    |   |   |____date.h
  |    |   |   
- |    |   |____help
- |    |
+ |    |   |____panel_help
+ |    |       |
+ |    |       |____analiza_exif.c
+ |    |       |____analiza_graficzna.c
+ |    |       |____analiza_wynikow.c
  |    |
  |    |____style /* grafika projektu */
  |    |   |
@@ -56,6 +59,14 @@
  |    |
  |    |____graphic
  |    |   |
- |    |   |____algorytm
+ |    |   |____algorytm_cvraport
+ |    |
+ |    |____date
+ |        |
+ |        |____
+ |             
+ |____mysql
+ |   |
+ |   |____pliki_mysql
  |
- |____
+ |____readme

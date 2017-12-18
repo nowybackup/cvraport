@@ -1,16 +1,17 @@
 #include "menu.h"
 
-char *choices[] = {
+
+
+void create_menu_date(){     
+                 
+        char *choices[] = {
                  	"Wyswietlenie tabeli exif",
 		"Wyswitlenie tabeli exif na mapie",
 		"Wyswietlenie wynikow analizy graficznej",
 		"Zarzadzanie baza danych",
-		"Pomoc",
 		"Exit",
 		(char *)NULL,
-        };
-
-void create_menu_date(){     
+        };         
                     
         int n_choices;
         
@@ -43,7 +44,7 @@ void create_menu_date(){
         menu_opts_off(my_menu, O_SHOWDESC);
 
         box(my_menu_win, 0, 0);
-        print_in_middle(my_menu_win, 1, 0, 40, "Moje menu", COLOR_PAIR(1));
+        print_in_middle(my_menu_win, 1, 0, 40, "Analiza danych", COLOR_PAIR(1));
         mvwaddch(my_menu_win, 2, 0, ACS_LTEE);
         mvwhline(my_menu_win, 2, 1, ACS_HLINE, 38);
         mvwaddch(my_menu_win, 2, 39, ACS_RTEE);
@@ -134,18 +135,6 @@ void create_menu_date(){
 	}
 	
 	if( item_name(current_item(my_menu)) == choices[4]){
-		unpost_menu(my_menu);
-		free_menu(my_menu);
-		for(int i = 0; i < n_choices; ++i)
-			free_item(my_items[i]);
-		endwin();
-		my_items = NULL;
-		my_menu = NULL;
-		my_menu_win = NULL;
-		create_menu_help();
-	}
-	
-	if( item_name(current_item(my_menu)) == choices[5]){
 		unpost_menu(my_menu);
 		free_menu(my_menu);
 		for(int i = 0; i < n_choices; ++i)
